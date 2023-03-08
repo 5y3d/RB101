@@ -1,9 +1,3 @@
-# m = p * (j / (1 - (1 + j)**(-n)))
-# m = monthly payment
-# p = loan amount
-# j = monthly interest rate
-# n = loan duration in months
-
 def prompt(text)
   puts "=> #{text}"
 end
@@ -35,7 +29,7 @@ loop do
     prompt "e.g '12 years and 11 months' = 12"
     prompt "Years remaining:"
     years = gets.chomp
-    prompt years + " years." if valid?(years)
+    prompt "#{years.to_i} years." if valid?(years)
     valid?(years) ? break : prompt("You must put a VALID number")
   end
 
@@ -44,11 +38,11 @@ loop do
     prompt "e.g. '12 years and 11 months' = 11"
     prompt "Months remaining:"
     months = gets.chomp
-    prompt months + " months." if valid?(months)
+    prompt "#{months.to_i} months." if valid?(months)
     valid?(months) ? break : prompt("You must put a VALID number")
   end
 
-  prompt "Total loan duration is #{years} years and #{months} months."
+  prompt "Total loan duration is #{years.to_i} years and #{months.to_i} months."
 
   loan_duration = (years.to_i * 12) + months.to_i
 
