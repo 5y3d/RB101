@@ -81,6 +81,14 @@ def display_final_results(monthly_payments_var, loan_duration_var,
   loan_duration_var) - loan_amount_var).round(2).abs}."
 end
 
+def display_final_results_no_interest(loan_duration_var, loan_amount_var)
+  prompt "Calculating..."
+  prompt "Your monthly payment amount is #{(loan_amount_var /
+  loan_duration_var).round(2)}."
+  prompt "Your total payment amount is #{loan_amount_var}."
+  prompt "The total interest on your loan is 0."
+end
+
 prompt "This is a loan calculator used to determine your monthly payments,"
 prompt "total payment amount, and total interest value."
 
@@ -112,9 +120,13 @@ loop do
   monthly_payments = interest_calculator(loan_amount, monthly_interest,
                                          loan_duration)
 
-  display_final_results(monthly_payments, loan_duration,
-                        loan_amount) # displays NaN if interest == 0; needs an
-  # if clause, or only allow apr > 0
+  if yearly_interest != 0
+    display_final_results(monthly_payments, loan_duration,
+                          loan_amount) # displays NaN if interest == 0; needed
+    # the additional method below
+  else
+    display_final_results_no_interest(loan_duration, loan_amount)
+  end
 
   prompt "Thanks for using the calculator; would you like to make another"
   prompt "calculation? (y/n)"
