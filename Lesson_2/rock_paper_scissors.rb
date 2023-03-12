@@ -26,22 +26,27 @@ end
 
 def grand_winner
   if WIN_COUNT.values.include?(3)
-    prompt "#{WIN_COUNT.key(3).chop.upcase} 3 times; Grand Winner decided."
+    prompt "#{WIN_COUNT.key(3).chop.upcase} 3 games; Grand Winner decided."
     prompt "Game over."
     1
   end
 end
 
-loop do
+def player_input
   while true
     prompt "Choose one; rock(r), paper(p), scissors(s), lizard(l), spock(v)."
-    player_choice = gets.chomp.downcase
-    if VALID_CHOICES.keys.include?(player_choice)
+    input = gets.chomp.downcase
+    if VALID_CHOICES.keys.include?(input)
       break
     else
       prompt "Invalid choice, pick again please. r, p, s, l, or v?"
     end
   end
+  input
+end
+
+loop do
+  player_choice = player_input()
 
   computer_choice = VALID_CHOICES.keys.sample
 
